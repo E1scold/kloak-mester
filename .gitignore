@@ -1,0 +1,4 @@
+node_modules
+.meteor/local
+client/semantic-ui/*
+!client/semantic-ui/custom.semantic.json
