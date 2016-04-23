@@ -2,6 +2,7 @@ Template.login.onCreated(function () {
 	this.state = new ReactiveDict()
 
 	this.state.set("isSignUp", false)
+	this.state.set("isLoading", false)
 })
 
 Template.login.events({
@@ -13,9 +14,14 @@ Template.login.events({
 
 	"click #login-facebook"(e, i){
 		e.preventDefault()
-		
-		Meteor.loginWithFacebook()
-		// logging in with facebook
+		i.state.set("isLoading", true)
+		Meteor.loginWithFacebook(function(error){
+			if (error){
+				i.state.set("isLoading", false)
+				return console.error(error)
+			}
+			FlowRouter.go("/")
+		})
 	},
 
 	"click .submit-form"(e, i){
@@ -27,9 +33,8 @@ Template.login.events({
 
 	"submit #auth-form"(e, i){
 		e.preventDefault()
-
+		i.state.set("isLoading", true)
 		if(i.state.get("isSignUp")) {
-
 			const {
 				email,
 				password,
@@ -40,6 +45,7 @@ Template.login.events({
 			} = e.target
 
 			if (password.value !== repeat.value){
+				i.state.set("isLoading", false)
 				return console.error("Passwords must match!")
 			}
 			Meteor.call("addUser",
@@ -50,6 +56,7 @@ Template.login.events({
 				address.value,
 				function(error){
 					if (error){
+						i.state.set("isLoading", false)
 						return console.error(error)
 					}
 					Meteor.loginWithPassword(
@@ -57,6 +64,7 @@ Template.login.events({
 						password.value,
 						function(error){
 							if (error){
+								i.state.set("isLoading", false)
 								return console.error(error)
 							}
 							Meteor.logoutOtherClients()
@@ -76,6 +84,7 @@ Template.login.events({
 				password.value,
 				function(error){
 					if (error){
+						i.state.set("isLoading", false)
 						return console.error(error)
 					}
 					Meteor.logoutOtherClients()
@@ -83,11 +92,14 @@ Template.login.events({
 				}
 			)
 		}
-	},
+	}
 })
 
 Template.login.helpers({
 	isSignUp(){
 		return Template.instance().state.get("isSignUp")
+	},
+	isLoading(){
+		return Template.instance().state.get("isLoading")
 	}
 })

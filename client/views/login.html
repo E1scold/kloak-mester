@@ -2,11 +2,12 @@
 	{{#if currentUser}}
 		{{> warning message="You are already logged in. Log out first."}}
 	{{else}}
-		{{#if loggingIn}}
-			{{> loading message="Logging in.."}}
-		{{else}}
-			<div
-				class="animated fadeInDown ui center aligned basic segment container"
+		<div
+			class="animated fadeInDown ui center aligned basic segment container"
+		>
+			<form
+				class="ui {{#if isLoading}}loading{{/if}} form"
+				id="auth-form"
 			>
 				<div
 					id="login-facebook"
@@ -19,157 +20,143 @@
 				 <div
 					class="ui horizontal divider"
 				> Or </div>
-				<form
-					class="ui form"
-					id="auth-form"
+				<div
+					class="field login-form-style"
+				>
+					<label
+					> Email </label>
+					<div class="ui left icon input"
+					>
+						<input
+							name="email"
+							type="email"
+							placeholder="Type your email here.."
+						>
+						<i class="mail icon"
+						></i>
+					</div>
+				</div>
+				<div
+					class="field login-form-style"
+				>
+					<label
+					> Password </label>
+					<div class="ui left icon input"
+					>
+						<input
+							name="password"
+							type="password"
+							placeholder="Type your password here.."
+						>
+						<i class="lock icon"
+						></i>
+					</div>
+				</div>
+				{{#unless isSignUp}}			
+				<div
+					class="field login-form-style"
 				>
 					<div
-						class="field login-form-style"
+						class="ui red login-form-style labeled icon button submit-form"
 					>
-						<label
-						> Email </label>
-						<div class="ui left icon input"
-		 
-						>
-							<input
-								name="email"
-								type="email"
-								placeholder="Type your email here.."
-							>
-							<i class="mail icon"
-							
-							></i>
-						</div>
-					</div>
-					<div
-						class="field login-form-style"
-					>
-						<label
-						> Password </label>
-						<div class="ui left icon input"
-		 
-						>
-							<input
-								name="password"
-								type="password"
-								placeholder="Type your password here.."
-							>
-							<i class="lock icon"
-							
-							></i>
-						</div>
-					</div>
-
-					{{#unless isSignUp}}			
-					<div
-					class="ui red login-form-style labeled icon button submit-form"
+					<i
+						class="sign in icon"
+					></i>
+					 Login </div>
+				</div>
+			 {{else}}
+			 <div
+					class="animated fadeIn field login-form-style"
 				>
-				<i
-					class="sign in icon"
-				></i>
-				 Login </div>
-
-				 {{else}}
-				 <div
-						class="animated fadeIn field login-form-style"
+					<label
+					> Repeat Password </label>
+					<div class="ui left icon input"
 					>
-						<label
-						> Repeat Password </label>
-						<div class="ui left icon input"
-		 
+						<input
+							name="repeat"
+							type="password"
+							placeholder="Repeat your password here.."
 						>
-							<input
-								name="repeat"
-								type="password"
-								placeholder="Repeat your password here.."
-							>
-							<i class="lock icon"
-							
-							></i>
-						</div>
+						<i class="lock icon"
+						></i>
 					</div>
-
-				 <div
-						class="animated fadeIn field login-form-style"
+				</div>
+			 <div
+					class="animated fadeIn field login-form-style"
+				>
+					<label
+					> Full Name </label>
+					<div class="ui left icon input"
 					>
-						<label
-						> Full Name </label>
-						<div class="ui left icon input"
-		 
+						<input
+							name="name"
+							type="text"
+							placeholder="Type your full name here.."
 						>
-							<input
-								name="name"
-								type="text"
-								placeholder="Type your full name here.."
-							>
-							<i class="user icon"
-							
-							></i>
-						</div>
+						<i class="user icon"
+						></i>
 					</div>
+				</div>
+				<div
+					class="animated fadeIn field login-form-style"
+				>
+					<label
+					> Address </label>
+					<div class="ui left icon input"
+					>
+						<input
+							name="address"
+							type="text"
+							placeholder="Type your adress here.."
+						>
+						<i class="home icon"
+						></i>
+					</div>
+				</div>
+				<div
+					class="animated fadeIn field login-form-style"
+				>
+					<label
+					> Phone Number </label>
+					<div class="ui left icon input"
+					>
+						<input
+							name="phone"
+							type="tel"
+							placeholder="Type your phone number here.."
+						>
+						<i class="phone icon"
+						></i>
+					</div>
+				</div>
+				<div
+					class="field login-form-style"
+				>
 					<div
-						class="animated fadeIn field login-form-style"
-					>
-						<label
-						> Address </label>
-						<div class="ui left icon input"
-		 
-						>
-							<input
-								name="address"
-								type="text"
-								placeholder="Type your adress here.."
-							>
-							<i class="home icon"
-							
-							></i>
-						</div>
-					</div>
-					<div
-						class="animated fadeIn field login-form-style"
-					>
-						<label
-						> Phone Number </label>
-						<div class="ui left icon input"
-		 
-						>
-							<input
-								name="phone"
-								type="tel"
-								placeholder="Type your phone number here.."
-							>
-							<i class="phone icon"
-							
-							></i>
-						</div>
-					</div>
-					
-
-					
-					<div
-					class="ui red login-form-style labeled icon button submit-form"
+						class="ui red login-form-style labeled icon button submit-form"
 					>
 					<i
 						class="add user icon"
 					></i>
 				 		Create User 
 				 	</div>
-				 	{{/unless}}
-				
-				</form>
-				<a href=""
-				id="toggle-sign-up"
-				>
-					{{#if isSignUp}}		
-					Don't have a user?
-					Create one here!
-					{{else}}
-					Have a user? Login here!
-					{{/if}}
-				</a>
-			</div>
-		{{/if}}
+				</div>
+			 	{{/unless}}
+			 	<div
+			 		class="field"
+			 	>
+				 	<a href=""
+						id="toggle-sign-up"
+					>
+						{{#if isSignUp}}		
+							Don't have a user?
+							Create one here!
+						{{else}}
+							Have a user? Login here!
+						{{/if}}
+					</a>
+				</div>
+			</form>
+		</div>
 	{{/if}}
-
-	
 </template>
