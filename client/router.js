@@ -27,3 +27,10 @@ FlowRouter.route('/login',{
 		BlazeLayout.render('layout',{page: 'login'})
 	}
 })
+
+FlowRouter.route('/userPage',{
+	name:'userPage',
+	action() {
+		BlazeLayout.render('layout',{userPage: 'userPage'})
+	}
+})

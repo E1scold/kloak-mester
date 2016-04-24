@@ -1,5 +1,13 @@
 <template 
 name='layout'>
 	{{> menu}}
-	{{> Template.dynamic template=page}}
+	{{#if allTrue userPage currentUser}}
+		{{> Template.dynamic template=userPage}}
+	{{else}}
+		{{#if page}}
+			{{> Template.dynamic template=page}}
+		{{else}}
+			{{> notFound}}
+		{{/if}}
+	{{/if}}
 </template>

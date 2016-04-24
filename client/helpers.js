@@ -14,3 +14,9 @@ Template.registerHelper("profilePicture", function () {
 	}
 
 })
+
+Template.registerHelper("allTrue", function(...args) {
+	return args.every(function(arg){
+		return arg
+	})
+})
