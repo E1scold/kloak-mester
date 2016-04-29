@@ -36,32 +36,32 @@ Template.login.events({
 		i.state.set("isLoading", true)
 		if(i.state.get("isSignUp")) {
 			const {
-				email,
-				password,
-				repeat,
-				name,
-				address,
-				phone
+				email: emailInput,
+				password: passwordInput,
+				repeat: repeatInput,
+				name: nameInput,
+				address: addressInput,
+				phone: phoneInput
 			} = e.target
 
-			if (password.value !== repeat.value){
+			if (passwordInput.value !== repeatInput.value){
 				i.state.set("isLoading", false)
 				return console.error("Passwords must match!")
 			}
 			Meteor.call("addUser",
-				email.value,
-				password.value,
-				name.value,
-				phone.value,
-				address.value,
+				emailInput.value,
+				passwordInput.value,
+				nameInput.value,
+				phoneInput.value,
+				addressInput.value,
 				function(error){
 					if (error){
 						i.state.set("isLoading", false)
 						return console.error(error)
 					}
 					Meteor.loginWithPassword(
-						{email: email.value},
-						password.value,
+						{email: emailInput.value},
+						passwordInput.value,
 						function(error){
 							if (error){
 								i.state.set("isLoading", false)
@@ -76,12 +76,12 @@ Template.login.events({
 		} 
 		else {
 			const {
-				email,
-				password
+				email: emailInput,
+				password: passwordInput
 			} = e.target
 			Meteor.loginWithPassword(
-				{email: email.value},
-				password.value,
+				{email: emailInput.value},
+				passwordInput.value,
 				function(error){
 					if (error){
 						i.state.set("isLoading", false)

@@ -36,6 +36,20 @@ Template.order.events({
 	'click #toggle-create-user'(e, i){
 		e.preventDefault()
 		i.state.set("create-user", !i.state.get("create-user"))
+	},
+
+	'submit #order-form'(e, i){
+		e.preventDefault()
+		const {
+			name: nameInput,
+			password: passwordInput,
+			repeat: repeatInput,
+			phone: phoneInput,
+			email: emailInput,
+			home: homeInput,
+			service: serviceInput
+		} = e.target
+
 	}
 })
 
