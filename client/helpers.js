@@ -20,3 +20,7 @@ Template.registerHelper("allTrue", function(...args) {
 		return arg
 	})
 })
+
+Template.registerHelper("equals", function(a, b) {
+	return a===b
+})

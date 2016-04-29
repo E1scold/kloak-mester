@@ -34,3 +34,10 @@ FlowRouter.route('/userPage',{
 		BlazeLayout.render('layout',{userPage: 'userPage'})
 	}
 })
+
+FlowRouter.route('/order',{
+	name:'order',
+	action() {
+		BlazeLayout.render('layout',{page: 'order'})
+	}
+})
