@@ -1,0 +1,260 @@
+<template name='order'>
+	
+	<div
+			class="animated fadeInDown ui center aligned basic segment container"
+	>
+		<form
+			class="ui form"
+			id="order-form"
+		>
+			<div
+				class="two fields"
+			>
+				<div
+					class="field"
+				>
+					<div
+						class="ui left icon input"
+					>	
+						<input
+							name= "name"
+							type= "text"
+							placeholder= "First & Last Name"
+						>
+						<i
+							class="user icon"
+						></i>
+					</div>
+				</div>
+				<div
+					class="field"
+				>
+					<button 
+						class="ui fluid basic {{#if createUser}} active {{/if}} toggle button"
+						id="toggle-create-user"
+					>
+					<i
+						class="add user icon"
+
+					></i>
+					Har du lyst til at oprette dig selv som bruger? 
+					</button>
+				</div>
+			</div>
+				{{#if createUser}}
+			<div
+				class="animated fadeInUp two fields"
+			>
+				<div
+					class="field"
+				>
+					<div
+						class="ui left icon input"
+					>	
+						<input
+							name= "password"
+							type= "number"
+							placeholder= "Password"
+						>
+						<i
+							class="lock icon"
+						></i>
+					</div>
+				</div>
+				<div
+					class="field"
+				>
+					<div
+						class="ui left icon input"
+					>	
+						<input
+							name= "repeat"
+							type= "password"
+							placeholder= "Repeat Password"
+						>
+						<i
+							class="lock icon"
+						></i>
+					</div>
+				</div>
+			</div>
+			{{/if}}
+			<div
+				class="two fields"
+			>
+			<div
+				class="field"
+			>
+				<div
+					class="ui left icon input"
+				>	
+					<input
+						name= "phone"
+						type= "tel"
+						placeholder= "Phone Number"
+					>
+					<i
+						class="phone icon"
+					></i>
+				</div>
+			</div>
+			<div
+				class="field"
+			>
+				<div
+					class="ui left icon input"
+				>	
+					<input
+						name= "email"
+						type= "text"
+						placeholder= "Email Address"
+					>
+					<i
+						class="mail icon"
+					></i>
+				</div>
+			</div>
+			</div>
+			<div
+				class="two fields"
+			>
+			<div
+				class="field"
+			>
+				<div
+					class="ui left icon input"
+				>	
+					<input
+						name= "home"
+						type= "text"
+						placeholder= "Home Address"
+					>
+					<i
+						class="home icon"
+					></i>
+				</div>
+			</div>
+			<div
+				class="field"
+			>
+				<div
+					class="ui left icon input"
+				>	
+					<input
+						name= "service"
+						type= "text"
+						placeholder= "Service will take place here"
+					>
+					<i
+						class="marker icon"
+					></i>
+				</div>
+			</div>
+			</div>
+			<label
+			> Choose a category here </label>
+			<div
+				class="ui fluid large buttons"
+			> 
+				<button
+					class="ui middle attached{{#if equals serviceType "eftersyn"}} active red{{/if}} button"
+					id="toggle-type-eftersyn"
+				> 
+				<i
+					class="search icon"
+				></i>
+				Eftersyn </button>
+				<button
+					class="ui middle attached{{#if equals serviceType "inspektion"}} active red{{/if}} button"
+					id="toggle-type-inspektion"
+				> 
+				<i
+					class="thumbs outline up icon"
+				></i>
+				Inspektion </button>
+				<button
+					class="ui middle attached{{#if equals serviceType "spoling"}}
+					active red{{/if}} button"
+					id="toggle-type-spoling"
+				>
+				<i
+					class="configure icon"
+				></i>
+				 Spoling </button>
+			</div>
+			<div
+				class="ui three column grid field"
+			>
+				<div
+					class="column"
+				>
+					{{#if equals serviceType "eftersyn"}}
+						<div
+							class="animated fadeInRight ui basic left aligned segment field"
+						>
+							<div
+								class="ui checkbox"
+							>
+								<input type="checkbox" name="example">
+								<label> Eftersyn af rør </label>
+							</div>
+						</div>	
+					{{/if}}
+				</div>
+				<div
+					class="column"
+				>
+					{{#if equals serviceType "inspektion"}}
+						<div
+							class="animated fadeInUp ui basic left aligned segment field"
+						>
+							<div
+								class="ui checkbox"
+							>
+								<input type="checkbox" name="example">
+								<label> Inspektion af rør </label>
+							</div>
+						</div>	
+					{{/if}}
+				</div>
+				<div
+					class="column"
+				>
+					{{#if equals serviceType "spoling"}}
+						<div
+							class="animated fadeInLeft ui basic left aligned segment field"
+						>
+							<div
+								class="ui checkbox"
+							>
+								<input type="checkbox" name="example">
+								<label> Spoling af rør </label>
+							</div>
+						</div>	
+					{{/if}}
+				</div>
+			</div>
+			<div
+				class="field"
+			>
+				<textarea
+					placeholder= "Further comments on your problem"
+					rows = 2
+				></textarea>
+			</div>
+			<div
+				class="field"
+			>
+				<button
+					class="ui positive right floated alligned large labeled icon button"
+				> 
+				<i
+					class="payment icon"
+				></i>
+				Submit your order </button>
+			</div>
+		</form>
+	</div>
+</template>
+
+
