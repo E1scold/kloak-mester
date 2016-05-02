@@ -1,12 +1,12 @@
 Meteor.methods({
-	addUser(email, password, name, address, phone){
+	addUser(email, password, name, home, phone){
 		Accounts.createUser({
 			email,
 			password,
 			profile: {
 				name,
 				phone,
-				address
+				home
 			}
 		})
 	}

@@ -30,14 +30,14 @@
 					class="field"
 				>
 					<button 
-						class="ui fluid basic {{#if createUser}} active {{/if}} toggle button"
+						class="ui fluid basic{{#if createUser}} active {{/if}} toggle button"
 						id="toggle-create-user"
 					>
 					<i
 						class="add user icon"
 
 					></i>
-					Har du lyst til at oprette dig selv som bruger? 
+					Klik her for at oprette bruger!
 					</button>
 				</div>
 			</div>
@@ -151,36 +151,40 @@
 				</div>
 			</div>
 			</div>
-			<label
-			> Choose a category here </label>
 			<div
-				class="ui fluid large buttons"
-			> 
-				<button
-					class="ui middle attached{{#if equals serviceType "eftersyn"}} active red{{/if}} button"
-					id="toggle-type-eftersyn"
+				class="field"
+			>
+				<label
+				> Vælg en kategori på dit problem her! </label>
+				<div
+					class="ui three fluid large buttons"
 				> 
-				<i
-					class="search icon"
-				></i>
-				Eftersyn </button>
-				<button
-					class="ui middle attached{{#if equals serviceType "inspektion"}} active red{{/if}} button"
-					id="toggle-type-inspektion"
-				> 
-				<i
-					class="thumbs outline up icon"
-				></i>
-				Inspektion </button>
-				<button
-					class="ui middle attached{{#if equals serviceType "spoling"}}
-					active red{{/if}} button"
-					id="toggle-type-spoling"
-				>
-				<i
-					class="configure icon"
-				></i>
-				 Spoling </button>
+					<button
+						class="ui middle attached{{#if equals serviceType "fix-sewer"}} active red{{/if}} button"
+						id="toggle-type-fix-sewer"
+					> 
+					<i
+						class="search icon"
+					></i>
+					Spoling af kloak</button>
+					<button
+						class="ui middle attached{{#if equals serviceType "review-sewer"}} active red{{/if}} button"
+						id="toggle-type-review-sewer"
+					> 
+					<i
+						class="thumbs outline up icon"
+					></i>
+					Eftersyn af kloak</button>
+					<button
+						class="ui middle attached{{#if equals serviceType "review-well"}}
+						active red{{/if}} button"
+						id="toggle-type-review-well"
+					>
+					<i
+						class="configure icon"
+					></i>
+					Eftersyn af pumpebrønd </button>
+				</div>
 			</div>
 			<div
 				class="ui three column grid field"
@@ -188,16 +192,16 @@
 				<div
 					class="column"
 				>
-					{{#if equals serviceType "eftersyn"}}
+					{{#if equals serviceType "fix-sewer"}}
 						<div
 							class="animated fadeInRight ui basic left aligned segment field"
 						>
 							<div
 								class="ui checkbox"
-								name="reviewPipe"
+								name="isUrgent"
 							>
 								<input type="checkbox" name="example">
-								<label> Eftersyn af rør </label>
+								<label> Er det akut </label>
 							</div>
 						</div>	
 					{{/if}}
@@ -205,16 +209,16 @@
 				<div
 					class="column"
 				>
-					{{#if equals serviceType "inspektion"}}
+					{{#if equals serviceType "review-sewer"}}
 						<div
 							class="animated fadeInUp ui basic left aligned segment field"
-							name="inspectionPipe"
+							name="isRat"
 						>
 							<div
 								class="ui checkbox"
 							>
 								<input type="checkbox" name="example">
-								<label> Inspektion af rør </label>
+								<label> Har du problemer med rotter </label>
 							</div>
 						</div>		
 					{{/if}}
@@ -222,16 +226,16 @@
 				<div
 					class="column"
 				>
-					{{#if equals serviceType "spoling"}}
+					{{#if equals serviceType "review-well"}}
 						<div
 							class="animated fadeInLeft ui basic left aligned segment field"
 						>
 							<div
 								class="ui checkbox"
-								name="fixPipe"
+								name="isWasteWater"
 							>
 								<input type="checkbox" name="example">
-								<label> Spoling af rør </label>
+								<label> Er det en spildevandspumpe </label>
 							</div>
 						</div>
 					{{/if}}
@@ -241,6 +245,7 @@
 				class="field"
 			>
 				<textarea
+					name="comments"
 					placeholder= "Further comments on your problem"
 					rows = 2
 				></textarea>

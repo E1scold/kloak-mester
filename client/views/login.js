@@ -40,7 +40,7 @@ Template.login.events({
 				password: passwordInput,
 				repeat: repeatInput,
 				name: nameInput,
-				address: addressInput,
+				home: homeInput,
 				phone: phoneInput
 			} = e.target
 
@@ -53,7 +53,7 @@ Template.login.events({
 				passwordInput.value,
 				nameInput.value,
 				phoneInput.value,
-				addressInput.value,
+				homeInput.value,
 				function(error){
 					if (error){
 						i.state.set("isLoading", false)
