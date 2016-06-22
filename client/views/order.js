@@ -53,6 +53,8 @@ Template.order.events({
 			comments: commentsInput
 		} = e.target
 
+
+
 		if (i.state.get("create-user")) {
 			const {
 				password: passwordInput,
@@ -88,12 +90,26 @@ Template.order.events({
 						}
 					)
 				}
-			)
-
-		else {
-
-			//only place order & 
+			)	
 		}
+		else {
+			Meteor.call("addOrder",
+				nameInput.value,
+				phoneInput.value,
+				emailInput.value,
+				homeInput.value,
+				serviceInput.value,
+				commentsInput.value,
+				function(error){
+					if (error){
+						i.state.set("isLoading", false)
+						return console.error(error)
+					}
+					Meteor.logoutOtherClients()
+					FlowRouter.go("/")
+				}
+			)
+		}	
 	}
 })
 
